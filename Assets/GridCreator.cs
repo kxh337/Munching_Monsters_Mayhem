@@ -17,6 +17,11 @@ public class GridCreator : MonoBehaviour {
 	public Transform CellPrefab;
 	public Vector3 Size;
 	public Transform[,] Grid;
+	public Object[] Doodads;
+	public int torchspawnrate = 35;
+	public int monsterspawnrate = 5;
+	public int weaponspawnrate = 10;
+
 
 	// Use this for initialization
 	void Start () {
@@ -193,6 +198,15 @@ public class GridCreator : MonoBehaviour {
 
 		// The 'next' transform's material color becomes white.
 		next.renderer.material.color = Color.white;
+		if (Random.Range (0, 100) < torchspawnrate) {
+			Instantiate(Doodads[0], new Vector3(next.position.x, next.position.y + 1, next.position.z), transform.rotation);		
+		}
+		if (Random.Range (0, 100) < monsterspawnrate) {
+			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + 1, next.position.z + (float)0.25), transform.rotation);		
+		}
+		if (Random.Range (0, 100) < weaponspawnrate) {
+			Instantiate(Doodads[2], new Vector3(next.position.x, next.position.y + 1, next.position.z - 0.25f), transform.rotation);		
+		}
 		// We add this 'next' transform to the Set our function.
 		AddToSet(next);
 		// Recursively call this function as soon as it finishes.
