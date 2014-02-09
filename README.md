@@ -1,3 +1,8 @@
+Munching Monsters Mayhem
+========================
+EECS290 Spring '14, Team 8
+--------------------------
+
 Hey guys,
 
 Included in this .zip file are the assets for a 2D grid creator/maze generator using a modified version of Prim's Algorithm.  
@@ -23,4 +28,4 @@ and how to access the list PathCells (for spawning purposes, etc.).
 This will be your first seriously graded project for the course (I'm guessing), so don't hold back and be as creative as you can!
 And as always, just let me know if you have any questions.
 
-- Tim
+-- Tim
