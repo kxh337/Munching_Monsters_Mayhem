@@ -50,8 +50,8 @@ public class GridCreator : MonoBehaviour {
 		}
 		// Centers the camera on the maze.
 		// Feel free to adjust this as needed.
-		Camera.main.transform.position = Grid[(int)(Size.x / 2f),(int)(Size.z / 2f)].position + Vector3.up * 20f;
-		Camera.main.orthographicSize = Mathf.Max(Size.x * 0.55f, Size.z * 0.5f);
+		//Camera.main.transform.position = Grid[(int)(Size.x / 2f),(int)(Size.z / 2f)].position + Vector3.up * 20f;
+		//Camera.main.orthographicSize = Mathf.Max(Size.x * 0.55f, Size.z * 0.5f);
 	}
 
 	// Sets a random weight to each cell.
