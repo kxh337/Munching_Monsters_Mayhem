@@ -21,6 +21,7 @@ public class GridCreator : MonoBehaviour {
 	public int torchspawnrate = 35;
 	public int monsterspawnrate = 5;
 	public int weaponspawnrate = 10;
+	public float GridHeight;
 
 
 	// Use this for initialization
@@ -183,7 +184,10 @@ public class GridCreator : MonoBehaviour {
 
 					if (!PathCells.Contains(cell)) {
 						// HINT: Try something here to make the maze 3D
-						cell.renderer.material.color = Color.black;
+						cell.renderer.material.color = Color.cyan;
+						cell.transform.localScale = new Vector3 (1, GridHeight, 1);
+						cell.transform.localPosition = 
+							new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
 					}
 				}
 				return;
