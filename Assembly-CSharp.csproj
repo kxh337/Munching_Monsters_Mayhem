@@ -49,6 +49,8 @@
      <Compile Include="Assets\CellScript.cs" />
      <Compile Include="Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\GridCreator.cs" />
+     <Compile Include="Assets\Weapons\Arrow.cs" />
+     <Compile Include="Assets\Weapons\Bow.cs" />
      <None Include="Assets\Monsterupdate\Materials\atsv2 vertexlit.shader" />
   </ItemGroup>
   <ItemGroup>
