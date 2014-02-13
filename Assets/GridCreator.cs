@@ -18,6 +18,7 @@ public class GridCreator : MonoBehaviour {
 	public Vector3 Size;
 	public Transform[,] Grid;
 	public Object[] Doodads;
+	public Object[] PlayerObject;
 	public int torchspawnrate = 35;
 	public int monsterspawnrate = 5;
 	public int weaponspawnrate = 10;
@@ -137,6 +138,7 @@ public class GridCreator : MonoBehaviour {
 		
 		Grid[0, 0].renderer.material.color = Color.green;
 		AddToSet(Grid[0, 0]);
+		Instantiate(PlayerObject[0], Grid[0,0].position + new Vector3(0f,2f,0f), Quaternion.identity);
 	}
 
 	// Adds a cell to the set of visited cells.
