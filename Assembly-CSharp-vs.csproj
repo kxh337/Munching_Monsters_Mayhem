@@ -47,15 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CellScript.cs" />
+     <Compile Include="Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\GridCreator.cs" />
      <None Include="Assets\Monsterupdate\Materials\atsv2 vertexlit.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{C8D11747-C093-3772-340D-6A6EE664BF7D}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -48,6 +48,7 @@ public class GridCreator : MonoBehaviour {
 				Grid[x,z] = newCell;
 			}
 		}
+
 		// Centers the camera on the maze.
 		// Feel free to adjust this as needed.
 		//Camera.main.transform.position = Grid[(int)(Size.x / 2f),(int)(Size.z / 2f)].position + Vector3.up * 20f;
@@ -177,7 +178,47 @@ public class GridCreator : MonoBehaviour {
 				Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
 				CancelInvoke("FindNext");
 				PathCells[PathCells.Count - 1].renderer.material.color = Color.red;
-				
+				//creates a wall along the souther side of the maze
+				for (int x = 0; x < (int)Size.x+1; x++){
+					Transform cell;
+					cell = (Transform)Instantiate(CellPrefab, new Vector3(x,0,-1), Quaternion.identity);
+					cell.renderer.material.color = Color.cyan;
+					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
+					cell.transform.localPosition = 
+						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
+					cell.GetComponentInChildren<TextMesh>().active = false;
+				}
+				//creates a wall  along the northern side of the maze
+				for (int x = 0; x < (int)Size.x+1; x++){
+					Transform cell;
+					cell = (Transform)Instantiate(CellPrefab, new Vector3(x,0,(int)Size.z), Quaternion.identity);
+					cell.renderer.material.color = Color.cyan;
+					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
+					cell.transform.localPosition = 
+						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
+					cell.GetComponentInChildren<TextMesh>().active = false;
+				}
+				//creates a wall along the western side of the maze
+				for (int x = 0; x < (int)Size.z; x++){
+					Transform cell;
+					cell = (Transform)Instantiate(CellPrefab, new Vector3(-1,0,x), Quaternion.identity);
+					cell.renderer.material.color = Color.cyan;
+					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
+					cell.transform.localPosition = 
+						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
+					cell.GetComponentInChildren<TextMesh>().active = false;
+				}
+				//creates a wall along the eastern side of the maze
+				for (int x = 0; x < (int)Size.z; x++){
+					Transform cell;
+					cell = (Transform)Instantiate(CellPrefab, new Vector3((int)Size.x,0,x), Quaternion.identity);
+					cell.renderer.material.color = Color.gray;
+					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
+					cell.transform.localPosition = 
+						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
+					cell.GetComponentInChildren<TextMesh>().active = false;
+				}
+
 				foreach (Transform cell in Grid) {
 					// Removes displayed weight
 					cell.GetComponentInChildren<TextMesh>().renderer.enabled = false;
@@ -188,6 +229,7 @@ public class GridCreator : MonoBehaviour {
 						cell.transform.localScale = new Vector3 (1, GridHeight, 1);
 						cell.transform.localPosition = 
 							new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
+						cell.GetComponentInChildren<TextMesh>().active = false;
 					}
 				}
 				return;

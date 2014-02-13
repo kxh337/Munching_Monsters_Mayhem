@@ -47,12 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CellScript.cs" />
+     <Compile Include="Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\GridCreator.cs" />
      <None Include="Assets\Monsterupdate\Materials\atsv2 vertexlit.shader" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C8D11747-C093-3772-340D-6A6EE664BF7D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
       <Project>{0343207B-926B-216C-9FEB-33AEBD1AC65E}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
