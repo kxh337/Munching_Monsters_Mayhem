@@ -22,6 +22,8 @@ public class GridCreator : MonoBehaviour {
 	public int monsterspawnrate = 5;
 	public int weaponspawnrate = 10;
 	public float GridHeight;
+	public GameObject player; 
+	public GameObject beam;
 
 
 	// Use this for initialization
@@ -31,6 +33,9 @@ public class GridCreator : MonoBehaviour {
 		SetAdjacents();
 		SetStart();
 		FindNext();
+		player = GameObject.Find ("First Person Controller");
+		player.SetActive (false);
+		beam = GameObject.Find ("Spotlight");
 	}
 
 	// Creates the grid by instantiating provided cell prefabs.
@@ -178,6 +183,7 @@ public class GridCreator : MonoBehaviour {
 				Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
 				CancelInvoke("FindNext");
 				PathCells[PathCells.Count - 1].renderer.material.color = Color.red;
+				beam.transform.position = new Vector3 (PathCells[PathCells.Count - 1].transform.position.x, 0, PathCells[PathCells.Count -1].transform.position.z); 
 				//creates a wall along the souther side of the maze
 				for (int x = 0; x < (int)Size.x+1; x++){
 					Transform cell;
@@ -232,6 +238,7 @@ public class GridCreator : MonoBehaviour {
 						cell.GetComponentInChildren<TextMesh>().active = false;
 					}
 				}
+				player.SetActive (true);
 				return;
 			}
 			// If we did not finish, then:
@@ -245,13 +252,13 @@ public class GridCreator : MonoBehaviour {
 		// The 'next' transform's material color becomes white.
 		next.renderer.material.color = Color.white;
 		if (Random.Range (0, 100) < torchspawnrate) {
-			Instantiate(Doodads[0], new Vector3(next.position.x, next.position.y + 1, next.position.z), transform.rotation);		
+			Instantiate(Doodads[0], new Vector3(next.position.x, next.position.y + .75f, next.position.z), transform.rotation);		
 		}
 		if (Random.Range (0, 100) < monsterspawnrate) {
-			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + 1, next.position.z + (float)0.25), transform.rotation);		
+			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + .75f, next.position.z + (float)0.25), transform.rotation);		
 		}
 		if (Random.Range (0, 100) < weaponspawnrate) {
-			Instantiate(Doodads[2], new Vector3(next.position.x, next.position.y + 1, next.position.z - 0.25f), transform.rotation);		
+			Instantiate(Doodads[2], new Vector3(next.position.x, next.position.y + .75f, next.position.z - 0.25f), transform.rotation);		
 		}
 		// We add this 'next' transform to the Set our function.
 		AddToSet(next);
