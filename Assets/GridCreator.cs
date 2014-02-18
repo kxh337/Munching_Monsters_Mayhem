@@ -24,18 +24,27 @@ public class GridCreator : MonoBehaviour {
 	public float GridHeight;
 	public GameObject player; 
 	public GameObject beam;
+	public GameObject EndZone;
+	public static int Level = 1;
+	public static bool levelstart;
 
 
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find ("First Person Controller");
+		player.SetActive (false);
+		beam = GameObject.Find ("Spotlight");
+		LevelStart ();
+		levelstart = false;
+	}
+
+	public void LevelStart() {
+		Size = new Vector3(3f * Level, 0, 3f * Level);
 		CreateGrid();
 		SetRandomNumbers();
 		SetAdjacents();
 		SetStart();
-		FindNext();
-		player = GameObject.Find ("First Person Controller");
-		player.SetActive (false);
-		beam = GameObject.Find ("Spotlight");
+		FindNext ();
 	}
 
 	// Creates the grid by instantiating provided cell prefabs.
@@ -184,6 +193,7 @@ public class GridCreator : MonoBehaviour {
 				CancelInvoke("FindNext");
 				PathCells[PathCells.Count - 1].renderer.material.color = Color.red;
 				beam.transform.position = new Vector3 (PathCells[PathCells.Count - 1].transform.position.x, 0, PathCells[PathCells.Count -1].transform.position.z); 
+				EndZone.transform.position = (PathCells[PathCells.Count - 1].position);
 				//creates a wall along the souther side of the maze
 				for (int x = 0; x < (int)Size.x+1; x++){
 					Transform cell;
@@ -218,7 +228,7 @@ public class GridCreator : MonoBehaviour {
 				for (int x = 0; x < (int)Size.z; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3((int)Size.x,0,x), Quaternion.identity);
-					cell.renderer.material.color = Color.gray;
+					cell.renderer.material.color = Color.cyan;
 					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
 					cell.transform.localPosition = 
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
@@ -255,7 +265,7 @@ public class GridCreator : MonoBehaviour {
 			Instantiate(Doodads[0], new Vector3(next.position.x, next.position.y + .75f, next.position.z), transform.rotation);		
 		}
 		if (Random.Range (0, 100) < monsterspawnrate) {
-			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + .75f, next.position.z + (float)0.25), transform.rotation);		
+			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + .75f, next.position.z + 0.25f), transform.rotation);		
 		}
 		if (Random.Range (0, 100) < weaponspawnrate) {
 			Instantiate(Doodads[2], new Vector3(next.position.x, next.position.y + .75f, next.position.z - 0.25f), transform.rotation);		
@@ -270,7 +280,8 @@ public class GridCreator : MonoBehaviour {
 	void Update() {
 
 		// Pressing 'F1' will generate a new maze.
-		if (Input.GetKeyDown(KeyCode.F1)) {
+		if (levelstart == true) {
+			Level++;
 			Application.LoadLevel(0);	
 		}
 	}

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\CellScript.cs" />
      <Compile Include="Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\EndZoneScript.cs" />
      <Compile Include="Assets\GridCreator.cs" />
      <Compile Include="Assets\Hud\HUDManager.cs" />
      <Compile Include="Assets\MonsterAI.cs" />

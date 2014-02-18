@@ -14,8 +14,8 @@ public class MonsterAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (hunt) {
-			//gameObject.transform.rotation.Set(gameObject.transform.rotation.x, Mathf.Atan((player.transform.position.y - gameObject.transform.position.y) / (player.transform.position.x - gameObject.transform.position.x)), gameObject.transform.rotation.z, gameObject.transform.rotation.w);		
-			Destroy(gameObject);
+			gameObject.transform.rotation.Set(gameObject.transform.rotation.x, Mathf.Atan((player.transform.position.y - gameObject.transform.position.y) / (player.transform.position.x - gameObject.transform.position.x)), gameObject.transform.rotation.z, gameObject.transform.rotation.w);		
+			//Destroy(gameObject);
 		}
 		else {
 		}
