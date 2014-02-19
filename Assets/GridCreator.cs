@@ -265,7 +265,7 @@ public class GridCreator : MonoBehaviour {
 			Instantiate(Doodads[0], new Vector3(next.position.x, next.position.y + .75f, next.position.z), transform.rotation);		
 		}
 		if (Random.Range (0, 100) < monsterspawnrate) {
-			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + .75f, next.position.z + 0.25f), transform.rotation);		
+			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + .5f, next.position.z + 0.25f), transform.rotation);		
 		}
 		if (Random.Range (0, 100) < weaponspawnrate) {
 			Instantiate(Doodads[2], new Vector3(next.position.x, next.position.y + .75f, next.position.z - 0.25f), transform.rotation);		
