@@ -34,7 +34,7 @@ public class Arrow : MonoBehaviour {
 		//check if collided with player and add arrow count if it did
 		if(collision.gameObject.tag == "Player"){
 			stuck = false;
-			Bow.arrowCount++;
+			HUDManager.arrows++;
 		}
 
 	}

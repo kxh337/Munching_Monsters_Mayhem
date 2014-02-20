@@ -8,13 +8,14 @@ public class HUDManager : MonoBehaviour {
 	public GUIText arrowsText;
 	public static float health = 26;
 	public static float fuel = 65;
-	public static float arrows = 3;
+	public static float arrows;
 
 	public bool lanternOn = true;
 
 	// Use this for initialization
 	void Start () {
 		instance = this;
+		arrowsText.color = Color.red;
 	}
 	
 	// Update is called once per frame
@@ -52,6 +53,12 @@ public class HUDManager : MonoBehaviour {
 
 		// ARROWS
 		arrowsText.text = arrows.ToString();
+		if(Bow.bowReady == true){
+			arrowsText.color = Color.red;
+		}
+		else{
+			arrowsText.color = Color.grey;
+		}
 
 	}
 

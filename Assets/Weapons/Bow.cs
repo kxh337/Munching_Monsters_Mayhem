@@ -8,7 +8,8 @@ public class Bow : MonoBehaviour {
 	public float defaultArrowAmount;
 	public float pulltime;
 	public float maxStrengthPullTime;
-	public static float arrowCount;
+
+	public static bool bowReady;
 
 	private float nextFire;
 	private bool charging;
@@ -20,12 +21,18 @@ public class Bow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		charging = false;
-		arrowCount = defaultArrowAmount;
+		HUDManager.arrows = defaultArrowAmount;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0) && arrowCount > 0){
+		if(Time.time > nextFire){
+			bowReady = true;
+		}
+		else{
+			bowReady = false;
+		}
+		if(Input.GetMouseButtonDown(0) && HUDManager.arrows > 0){
 			chargingShot();
 		}
 		if (Input.GetMouseButtonUp(0) && charging == true){
@@ -54,7 +61,7 @@ public class Bow : MonoBehaviour {
 		cloneRigid.AddForce(Camera.main.transform.forward  * defaultArrowSpeed * timePulledBack);
 		charging = false;
 		nextFire = Time.time + pulltime;
-		arrowCount--;
+		HUDManager.arrows--;
 	}
 
 
