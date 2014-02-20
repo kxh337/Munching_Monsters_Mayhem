@@ -6,8 +6,8 @@ public class HUDManager : MonoBehaviour {
 	public GUIText healthText;
 	public GUIText fuelText;
 	public GUIText arrowsText;
-	public static float health = 26;
-	public static float fuel = 65;
+	public static float health;
+	public static float fuel;
 	public static float arrows;
 
 	public bool lanternOn = true;
@@ -16,6 +16,8 @@ public class HUDManager : MonoBehaviour {
 	void Start () {
 		instance = this;
 		arrowsText.color = Color.red;
+		fuel = 65;
+		health = 100;
 	}
 	
 	// Update is called once per frame
@@ -28,13 +30,13 @@ public class HUDManager : MonoBehaviour {
 		// hit monster, decrease health
 
 		// HEALTH
-		healthText.text = health.ToString();
+		healthText.text = Mathf.Floor(health).ToString();
 		// low health warning
 		if (health < 30) {
 			instance.healthText.color = Color.red;
 		}
 		else if (health <= 0) {
-			// death
+			// death, currently dealt with in gridcreator's update, temporary.
 
 
 			}

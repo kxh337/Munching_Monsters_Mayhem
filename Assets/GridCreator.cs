@@ -192,7 +192,7 @@ public class GridCreator : MonoBehaviour {
 				Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
 				CancelInvoke("FindNext");
 				PathCells[PathCells.Count - 1].renderer.material.color = Color.red;
-				beam.transform.position = new Vector3 (PathCells[PathCells.Count - 1].transform.position.x, 0, PathCells[PathCells.Count -1].transform.position.z); 
+				beam.transform.position = new Vector3 (PathCells[PathCells.Count - 1].transform.position.x, 7, PathCells[PathCells.Count -1].transform.position.z); 
 				EndZone.transform.position = (PathCells[PathCells.Count - 1].position);
 				//creates a wall along the souther side of the maze
 				for (int x = 0; x < (int)Size.x+1; x++){
@@ -283,6 +283,14 @@ public class GridCreator : MonoBehaviour {
 		if (levelstart == true) {
 			Level++;
 			Application.LoadLevel(0);	
+		}
+
+		if (HUDManager.health <= 0) {
+			Level = 1;
+			HUDManager.health = 100;
+			HUDManager.arrows = 1;
+			HUDManager.fuel = 65;
+			Application.LoadLevel(0);
 		}
 	}
 }

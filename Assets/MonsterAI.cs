@@ -16,12 +16,13 @@ public class MonsterAI : MonoBehaviour {
 	void Update () {
 		if (hunt) {
 			Vector3 amttorotate;
-			amttorotate = Vector3.RotateTowards(transform.forward, player.transform.position - gameObject.transform.position, 2f, 2f);
-			//gameObject.transform.Rotate(0f, 0f + amttorotate, 0f);	
+			amttorotate = Vector3.RotateTowards(transform.forward, player.transform.position - gameObject.transform.position, 2f, 2f);	
 			gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(amttorotate.x, 0f, amttorotate.z), new Vector3(0f,1f,0f));
 			gameObject.transform.Translate(Vector3.forward * movespeed * Time.deltaTime);
-			//gameObject.animation.Play("walk");
-			//Destroy(gameObject);
+			if (gameObject.transform.position.x - player.transform.position.x < 1 && gameObject.transform.position.z - player.transform.position.z < 1) {
+				HUDManager.health = HUDManager.health -1*Time.deltaTime;
+			}
+
 		}
 		else {
 		}
