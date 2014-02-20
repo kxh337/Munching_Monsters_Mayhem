@@ -27,15 +27,9 @@ public class Arrow : MonoBehaviour {
 		Debug.Log(collision.gameObject.tag);
 		//check if collided with enemy and stay stuck with enemy
 		if((collision.gameObject.tag == "Enemy")){
-			//transform.parent = collision.transform;
+			//gameObject.transform.parent = collision.transform;
 			stuck = true;
 			//deal damage
 		}
-		//check if collided with player and add arrow count if it did
-		if(collision.gameObject.tag == "Player"){
-			stuck = false;
-			HUDManager.arrows++;
-		}
-
 	}
 }
