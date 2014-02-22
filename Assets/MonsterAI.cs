@@ -6,6 +6,7 @@ public class MonsterAI : MonoBehaviour {
 	private bool hunt = false;
 	public GameObject player;
 	public float movespeed = 0.1f;
+	public Animator anim;
 
 	// Use this for initialization
 	void Start () {
@@ -31,9 +32,11 @@ public class MonsterAI : MonoBehaviour {
 	void OnTriggerEnter() {
 		player = GameObject.FindWithTag ("Player");
 		hunt = true;
+		anim.Play ("walk");
 	}
 
 	void OnTriggerExit() {
 		hunt = false;
+		anim.Play ("idle");
 	}
 }
