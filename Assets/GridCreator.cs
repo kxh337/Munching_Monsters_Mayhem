@@ -150,7 +150,7 @@ public class GridCreator : MonoBehaviour {
 			AdjSet.Add(new List<Transform>());	
 		}
 		
-		Grid[0, 0].renderer.material.color = Color.green;
+		Grid[0, 0].renderer.material.color = Color.yellow;
 		AddToSet(Grid[0, 0]);
 	}
 
@@ -191,14 +191,14 @@ public class GridCreator : MonoBehaviour {
 			if (isEmpty) { 
 				Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
 				CancelInvoke("FindNext");
-				PathCells[PathCells.Count - 1].renderer.material.color = Color.red;
+				PathCells[PathCells.Count - 1].renderer.material.color = Color.yellow;
 				beam.transform.position = new Vector3 (PathCells[PathCells.Count - 1].transform.position.x, 7, PathCells[PathCells.Count -1].transform.position.z); 
 				EndZone.transform.position = (PathCells[PathCells.Count - 1].position);
 				//creates a wall along the souther side of the maze
 				for (int x = 0; x < (int)Size.x+1; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3(x,0,-1), Quaternion.identity);
-					cell.renderer.material.color = Color.cyan;
+					cell.renderer.material.color = Color.yellow;
 					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
 					cell.transform.localPosition = 
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
@@ -208,7 +208,7 @@ public class GridCreator : MonoBehaviour {
 				for (int x = 0; x < (int)Size.x+1; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3(x,0,(int)Size.z), Quaternion.identity);
-					cell.renderer.material.color = Color.cyan;
+					cell.renderer.material.color = Color.yellow;
 					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
 					cell.transform.localPosition = 
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
@@ -218,7 +218,7 @@ public class GridCreator : MonoBehaviour {
 				for (int x = 0; x < (int)Size.z; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3(-1,0,x), Quaternion.identity);
-					cell.renderer.material.color = Color.cyan;
+					cell.renderer.material.color = Color.yellow;
 					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
 					cell.transform.localPosition = 
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
@@ -228,7 +228,7 @@ public class GridCreator : MonoBehaviour {
 				for (int x = 0; x < (int)Size.z; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3((int)Size.x,0,x), Quaternion.identity);
-					cell.renderer.material.color = Color.cyan;
+					cell.renderer.material.color = Color.yellow;
 					cell.transform.localScale = new Vector3 (1, GridHeight, 1);
 					cell.transform.localPosition = 
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
@@ -241,7 +241,7 @@ public class GridCreator : MonoBehaviour {
 
 					if (!PathCells.Contains(cell)) {
 						// HINT: Try something here to make the maze 3D
-						cell.renderer.material.color = Color.cyan;
+						cell.renderer.material.color = Color.yellow;
 						cell.transform.localScale = new Vector3 (1, GridHeight, 1);
 						cell.transform.localPosition = 
 							new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
@@ -259,8 +259,8 @@ public class GridCreator : MonoBehaviour {
 			AdjSet[lowestList].Remove(next);
 		} while (next.GetComponent<CellScript>().AdjacentsOpened >= 2);	// This keeps the walls in the grid, otherwise Prim's Algorithm would just visit every cell
 
-		// The 'next' transform's material color becomes white.
-		next.renderer.material.color = Color.white;
+		// The 'next' transform's material color becomes yellow.
+		next.renderer.material.color = Color.yellow;
 		if (Random.Range (0, 100) < torchspawnrate) {
 			Instantiate(Doodads[0], new Vector3(next.position.x, next.position.y + .75f, next.position.z), transform.rotation);		
 		}
