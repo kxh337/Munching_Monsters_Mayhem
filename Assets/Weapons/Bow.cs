@@ -5,7 +5,6 @@ using System.Collections;
 public class Bow : MonoBehaviour {
 	public GameObject  arrow;
 	public float defaultArrowSpeed;
-	public float defaultArrowAmount;
 	public float pulltime;
 	public float maxStrengthPullTime;
 
@@ -21,7 +20,6 @@ public class Bow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		charging = false;
-		HUDManager.arrows = defaultArrowAmount;
 	}
 	
 	// Update is called once per frame
