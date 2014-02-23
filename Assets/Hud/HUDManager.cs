@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HUDManager : MonoBehaviour {
@@ -8,7 +8,7 @@ public class HUDManager : MonoBehaviour {
 	public GUIText arrowsText;
 	public static float health = 100;
 	public static float fuel = 30;
-	public static float arrows;
+	public static float arrows = 1;
 
 	public bool lanternOn = true;
 

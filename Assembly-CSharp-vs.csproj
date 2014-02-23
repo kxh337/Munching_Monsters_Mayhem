@@ -51,11 +51,13 @@
      <Compile Include="Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\EndZoneScript.cs" />
      <Compile Include="Assets\GridCreator.cs" />
-     <Compile Include="Assets\HUDManager.cs" />
-     <Compile Include="Assets\MonsterAI.cs" />
+     <Compile Include="Assets\Hud\HUDManager.cs" />
+     <Compile Include="Assets\Items\Ammopickuptrigger.cs" />
+     <Compile Include="Assets\Items\Torchpickuptrigger.cs" />
+     <Compile Include="Assets\Monster\MonsterAI.cs" />
      <Compile Include="Assets\Weapons\Arrow.cs" />
      <Compile Include="Assets\Weapons\Bow.cs" />
-     <None Include="Assets\Monsterupdate\Materials\atsv2 vertexlit.shader" />
+     <Compile Include="Assets\lightControls.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
