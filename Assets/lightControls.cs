@@ -23,8 +23,12 @@ public class lightControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (HUDManager.fuel >= 100)
+			lightToDim.intensity = 1;
+		else
 			lightToDim.intensity =  HUDManager.fuel / 100;
-			HUDManager.fuel -= Time.deltaTime;
+		HUDManager.fuel -= Time.deltaTime;
 		if (HUDManager.fuel <= 0)
 			HUDManager.fuel = 0;
 
