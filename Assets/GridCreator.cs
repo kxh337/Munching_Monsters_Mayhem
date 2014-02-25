@@ -262,7 +262,7 @@ public class GridCreator : MonoBehaviour {
 		// The 'next' transform's material color becomes yellow.
 		next.renderer.material.color = Color.yellow;
 		if (Random.Range (0, 100) < torchspawnrate) {
-			Instantiate(Doodads[0], new Vector3(next.position.x, next.position.y + .75f, next.position.z), transform.rotation);		
+			Instantiate(Doodads[0], new Vector3(next.position.x - .5f, next.position.y + .75f, next.position.z - .5f), Quaternion.Euler (25f, 0f ,-25f));		
 		}
 		if (Random.Range (0, 100) < monsterspawnrate) {
 			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + .5f, next.position.z + 0.25f), transform.rotation);		
