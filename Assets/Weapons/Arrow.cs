@@ -29,6 +29,7 @@ public class Arrow : MonoBehaviour {
 		if((collision.gameObject.tag == "Enemy")){
 			//gameObject.transform.parent = collision.transform;
 			stuck = true;
+			HUDManager.addPoints(30);
 			//deal damage
 		}
 	}

@@ -11,10 +11,12 @@ public class MonsterAI : MonoBehaviour {
 	private GameObject player;
 	public float movespeed = 0.1f;
 	public Animator anim;
+	public float health = GridCreator.Level * 100;
 
 	// Use this for initialization
 	void Start () {
 		player = CharacterCollisionHandler.player.gameObject;
+		health = GridCreator.Level * 100;
 	}
 	
 	// Update is called once per frame
@@ -41,10 +43,19 @@ public class MonsterAI : MonoBehaviour {
 		}
 		else {
 		}
+		if (health <= 0) {
+			HUDManager.addPoints(Mathf.Pow(10, GridCreator.Level));
+			Destroy(gameObject);
+		}
 	}
 
-	void OnTriggerEnter() {
-
+	void OnCollisionEnter(Collision collision) {
+		if ((collision.gameObject.tag == "Arrow")) {
+			health -= 100;
+		}
+		if ((collision.gameObject.tag == "Player")) {
+			HUDManager.health -= 1;;
+		}
 		//hunt = true;
 
 	}

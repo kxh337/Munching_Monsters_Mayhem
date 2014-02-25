@@ -11,8 +11,10 @@ public class EndZoneScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.gameObject == player)
+		if (other.gameObject == player) {
+			HUDManager.addPoints (1000);
 			GridCreator.levelstart = true;
+		}
 	}
 
 	// Update is called once per frame

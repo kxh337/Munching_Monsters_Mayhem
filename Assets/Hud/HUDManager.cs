@@ -6,6 +6,8 @@ public class HUDManager : MonoBehaviour {
 	public GUIText healthText;
 	public GUIText fuelText;
 	public GUIText arrowsText;
+	public GUIText scoreText;
+	public static float Score = 0;
 	public static float health = 100;
 	public static float fuel = 30;
 	public static float arrows = 1;
@@ -60,6 +62,8 @@ public class HUDManager : MonoBehaviour {
 			arrowsText.color = Color.grey;
 		}
 
+		scoreText.text = "Score: " + Score.ToString ();
+
 	}
 
 
@@ -89,12 +93,19 @@ public class HUDManager : MonoBehaviour {
 		// make that item disappear
 		
 		fuel += 20;
+		addPoints (50);
 	}
 	
 	public static void pickupArrow() {
 		// onCollision
 		// make that item disappear
 		arrows += 1;
+		addPoints (50);
+	}
+
+	public static void addPoints(float points) {
+		//used by events to increase score
+		Score = Score + points;
 	}
 
 
