@@ -25,9 +25,9 @@ public class lightControls : MonoBehaviour {
 	void Update () {
 
 		if (HUDManager.fuel >= 100)
-			lightToDim.intensity = 1;
+			HUDManager.fuel = 100;
 		else
-			lightToDim.intensity =  HUDManager.fuel / 100;
+			lightToDim.intensity =  HUDManager.fuel / 200;
 		HUDManager.fuel -= Time.deltaTime;
 		if (HUDManager.fuel <= 0)
 			HUDManager.fuel = 0;
