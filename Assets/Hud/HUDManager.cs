@@ -10,7 +10,7 @@ public class HUDManager : MonoBehaviour {
 	public static float Score = 0;
 	public static float health = 100;
 	public static float maxHealth = 100;
-	public static float fuel = 30;
+	public static float fuel = 10;
 	public static float maxFuel = 100;
 	public static float arrows = 1;
 	public static bool isPause = false;
