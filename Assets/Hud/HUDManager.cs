@@ -9,7 +9,9 @@ public class HUDManager : MonoBehaviour {
 	public GUIText scoreText;
 	public static float Score = 0;
 	public static float health = 100;
+	public static float maxHealth = 100;
 	public static float fuel = 30;
+	public static float maxFuel = 100;
 	public static float arrows = 1;
 
 	public bool lanternOn = true;
@@ -19,7 +21,8 @@ public class HUDManager : MonoBehaviour {
 		instance = this;
 		arrowsText.color = Color.red;
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		if (lanternOn == true && fuel > 0) {
@@ -36,10 +39,11 @@ public class HUDManager : MonoBehaviour {
 			instance.healthText.color = Color.red;
 		}
 		else if (health <= 0) {
-			// death
-
-
+			// make everything stop, trigger death
 			}
+		else if ( health > maxHealth ) {
+			health = maxHealth; // prevents having health higher than 100 (%).
+		}
 		else {
 			instance.healthText.color = Color.white;
 		}
@@ -47,10 +51,18 @@ public class HUDManager : MonoBehaviour {
 
 		// FUEL
 		fuelText.text = Mathf.Floor(fuel).ToString ();
-
 		// low fuel warning
-		if (fuel < 20) instance.healthText.color = Color.red;
-		else instance.fuelText.color = Color.white;
+		if (fuel < 20) {
+						instance.healthText.color = Color.red;
+				} else if (fuel > 100) {
+						fuel = 100;
+				} else {
+						instance.fuelText.color = Color.white;
+				}
+
+
+
+
 
 
 		// ARROWS
@@ -92,20 +104,18 @@ public class HUDManager : MonoBehaviour {
 		// onCollision
 		// make that item disappear
 		
-		fuel += 20;
+		fuel += 10;
 		addPoints (50);
 	}
 	
 	public static void pickupArrow() {
-		// onCollision
-		// make that item disappear
 		arrows += 1;
 		addPoints (50);
 	}
 
 	public static void addPoints(float points) {
 		//used by events to increase score
-		Score = Score + points;
+		Score += points;
 	}
 
 
