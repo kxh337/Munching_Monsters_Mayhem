@@ -2,18 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class HUDManager : MonoBehaviour {
-	public static HUDManager instance;
-	public GUIText healthText;
-	public GUIText fuelText;
-	public GUIText arrowsText;
-	public GUIText scoreText;
-	public static float Score = 0;
-	public static float health = 100;
+	public static HUDManager instance; // this HUDManager
+	public GUIText healthText; // for display of health
+	public GUIText fuelText; // for display of fuel
+	public GUIText arrowsText; // for display of ammo
+	public GUIText scoreText; // for display of score
+	public static float Score = 0; // the amount of points the player has
+	public static float health = 100; // player health
 	public static float maxHealth = 100;
-	public static float fuel = 10;
-	public static float maxFuel = 100;
-	public static float arrows = 1;
-	public static bool isPause = false;
+	public static float fuel = 100; // lantern/torch fuel
+	public static float maxFuel = 100; 
+	public static float arrows = 1; // arrows for bow for combat
+	public static bool isPause = false; // pause state boolean
 	public static bool restart = false;
 	public static bool dead = false;
 
