@@ -13,6 +13,9 @@ public class Torchpickuptrigger : MonoBehaviour {
 	
 	}
 
+	/*
+	 * if the player touches this, he gets lantern fuel, and the object goes away
+	 */
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
 			HUDManager.pickupFuel ();

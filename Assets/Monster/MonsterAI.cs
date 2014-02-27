@@ -3,23 +3,28 @@ using System.Collections;
 
 public class MonsterAI : MonoBehaviour {
 
-	private bool hunt = false;
-	private float distance;
+	private bool hunt = false; // determines if the monster is trying to kill the player
+	private float distance; // distance from the monster to the player
 	
 	
-	public float huntDistance;
-	private GameObject player;
-	public float movespeed = 0.1f;
-	public Animator anim;
-	public float health = GridCreator.Level * 100;
+	public float huntDistance; // distance where the monster will try to hunt the player
+	private GameObject player; // the player
+	public float movespeed = 0.1f; // monster move speed
+	public Animator anim; // the animator
+	public float health; // monster health
 
-	// Use this for initialization
+	/*
+	 * initializes the monster
+	 */
 	void Start () {
 		player = CharacterCollisionHandler.player.gameObject;
 		health = GridCreator.Level * 100;
 	}
 	
-	// Update is called once per frame
+	/*
+	 * if the game isn't paused, the monster goes towards the player if the player is close enough
+	 * if the monster dies, it adds points
+	 */
 	void Update () {
 		if (!HUDManager.isPause) {
 			distance = Vector3.Distance (gameObject.transform.position, player.gameObject.transform.position);
@@ -37,10 +42,6 @@ public class MonsterAI : MonoBehaviour {
 				amttorotate = Vector3.RotateTowards (transform.forward, player.transform.position - gameObject.transform.position, 2f, 2f);	
 				gameObject.transform.rotation = Quaternion.LookRotation (new Vector3 (amttorotate.x, 0f, amttorotate.z), new Vector3 (0f, 1f, 0f));
 				gameObject.transform.Translate (Vector3.forward * movespeed * Time.deltaTime);
-			/*if (gameObject.transform.position.x - player.transform.position.x < 1 && gameObject.transform.position.z - player.transform.position.z < 1) {
-				HUDManager.health = HUDManager.health -1*Time.deltaTime;
-			}*/
-
 			} 
 			else {}
 			if (health <= 0) {
@@ -51,6 +52,10 @@ public class MonsterAI : MonoBehaviour {
 		}
 	}
 
+	/*
+	 * if an arrow hits the monster, the monster takes damage
+	 * if it is a player, the player takes damage
+	 */
 	void OnCollisionEnter(Collision collision) {
 		if ((collision.gameObject.tag == "Arrow")) {
 			health -= 100;
@@ -59,12 +64,6 @@ public class MonsterAI : MonoBehaviour {
 		if ((collision.gameObject.tag == "Player")) {
 			HUDManager.health -= 1;;
 		}
-		//hunt = true;
-
 	}
 
-	void OnTriggerExit() {
-		//hunt = false;
-
-	}
 }
