@@ -30,10 +30,10 @@ public class Bow : MonoBehaviour {
 		else{
 			bowReady = false;
 		}
-		if(Input.GetMouseButtonDown(0) && HUDManager.arrows > 0){
+		if(Input.GetMouseButtonDown(0) && HUDManager.arrows > 0 && !HUDManager.isPause){
 			chargingShot();
 		}
-		if (Input.GetMouseButtonUp(0) && charging == true){
+		if (Input.GetMouseButtonUp(0) && charging == true && !HUDManager.isPause){
 			shoot();
 		}
 	}

@@ -13,6 +13,7 @@ public class HUDManager : MonoBehaviour {
 	public static float fuel = 30;
 	public static float maxFuel = 100;
 	public static float arrows = 1;
+	public static bool isPause = false;
 
 	public bool lanternOn = true;
 
@@ -22,9 +23,22 @@ public class HUDManager : MonoBehaviour {
 		arrowsText.color = Color.red;
 	}
 
+	void OnGUI() {
+		if (isPause) {
+			GUI.Box(new Rect(0,0,1000,1000), "Shop");
+			if (GUI.Button(new Rect(20,20,200,50), "Buy Arrow: 500 Points") && Score >= 500)
+				arrows++;
+			if (GUI.Button(new Rect(20,70,200,50), "Buy Health: 100 Points") && Score >= 100)
+				health = health + 5;
+		}
+		
+	}
 
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetButtonDown ("esc")) {
+			isPause = !isPause;		
+		}
 		if (lanternOn == true && fuel > 0) {
 						// useFuel ();
 				} else {
