@@ -3,7 +3,7 @@ using System.Collections;
 
 public class fuelBar : MonoBehaviour {
 	public float fuelBarLength;
-	public float fuel;
+	private float fuel;
 	public float maxFuel = 100;
 
 	// Use this for initialization
