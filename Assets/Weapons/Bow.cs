@@ -47,7 +47,7 @@ public class Bow : MonoBehaviour {
 		audio.Stop();
 		audio.clip = charge;
 		if(Time.time > nextFire){
-			if(charging = false){
+			if(charging == false){
 
 			}
 		charging = true;

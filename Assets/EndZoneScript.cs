@@ -5,11 +5,16 @@ public class EndZoneScript : MonoBehaviour {
 	
 	public GameObject player;
 
-	// Use this for initialization
+	/*
+	 * does nothing right now
+	 */
 	void Start () {
 		
 	}
 
+	/*
+	 * if the player enters the area, restarts the level, and adds points
+	 */
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject == player) {
 			HUDManager.addPoints (1000);

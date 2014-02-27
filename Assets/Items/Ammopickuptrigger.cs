@@ -12,6 +12,9 @@ public class Ammopickuptrigger : MonoBehaviour {
 	void Update () {
 	
 	}
+	/*
+	 * if the player hits this, he picks up an arrow and the object goes away
+	 */
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
 			HUDManager.pickupArrow ();
