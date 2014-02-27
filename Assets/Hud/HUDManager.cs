@@ -23,18 +23,24 @@ public class HUDManager : MonoBehaviour {
 	void Start () {
 		instance = this;
 		arrowsText.color = Color.red;
+	
 	}
 
 	void OnGUI() {
 		if (isPause) {
-			GUI.Box(new Rect(0,0,1000,1000), "Shop");
-			if (GUI.Button(new Rect(20,20,200,50), "Buy Arrow: 500 Points") && Score >= 500){
+			GUI.Box(new Rect(100,100,500,500), "Shop");
+			if (GUI.Button(new Rect(250,120,200,50), "Buy Arrow: 500 Points") && Score >= 500){
 				arrows++;
 				Score = Score - 500;
 			}
-			if (GUI.Button(new Rect(20,70,200,50), "Buy Health: 100 Points") && Score >= 100){
+			if (GUI.Button(new Rect(250,170,200,50), "Buy Health: 100 Points") && Score >= 100 && health < 100){
 				health = health + 5;
 				Score = Score - 100;
+			}
+			if (GUI.Button(new Rect(250,220,200,50), "Buy Strength: 1000 Points") && Score >= 1000){
+				Bow.pulltime = Bow.pulltime * 0.75f;
+				Bow.maxStrengthPullTime = Bow.maxStrengthPullTime * 0.75f;
+				Score = Score - 1000;
 			}
 		}
 		if (health <= 0) {
@@ -42,6 +48,7 @@ public class HUDManager : MonoBehaviour {
 			// make everything stop, trigger death
 			if(GUI.Button(new Rect(Screen.width/2-300, Screen.height/2-150,600,300), " You Died \n Game Over! \n Restart from the beginning?")){
 				restart = true;
+				isPause = false;
 			}
 		}
 		
