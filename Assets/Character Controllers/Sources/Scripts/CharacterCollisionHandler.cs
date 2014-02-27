@@ -21,6 +21,7 @@ public class CharacterCollisionHandler : MonoBehaviour {
 		//Enemy
 		if(hit.gameObject.tag == "Enemy"){
 			print("Ouch hit enemies");
+			HUDManager.health -= 1;
 		}
 		//weapon
 		if(hit.gameObject.tag == "ArrowItem"){

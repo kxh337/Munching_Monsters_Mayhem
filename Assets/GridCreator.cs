@@ -285,12 +285,14 @@ public class GridCreator : MonoBehaviour {
 			Application.LoadLevel(0);	
 		}
 
-		if (HUDManager.health <= 0) {
+		if (HUDManager.health <= 0 && HUDManager.restart == true) {
+			HUDManager.dead = false;
 			Level = 1;
 			HUDManager.health = 100;
 			HUDManager.arrows = 1;
-			HUDManager.fuel = 65;
+			HUDManager.fuel = 30;
 			Application.LoadLevel(0);
+			HUDManager.restart = false;
 		}
 	}
 }
