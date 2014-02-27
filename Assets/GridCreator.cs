@@ -293,6 +293,7 @@ public class GridCreator : MonoBehaviour {
 			HUDManager.fuel = 30;
 			Application.LoadLevel(0);
 			HUDManager.restart = false;
+			HUDManager.isPause = false;
 		}
 	}
 }

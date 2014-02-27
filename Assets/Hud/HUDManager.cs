@@ -16,19 +16,25 @@ public class HUDManager : MonoBehaviour {
 	public static bool isPause = false; // pause state boolean
 	public static bool restart = false;
 	public static bool dead = false;
+	public GUITexture deathTexture;
+
 
 	public bool lanternOn = true;
 
+	private Color deathColor;
 	// Use this for initialization
 	void Start () {
+		deathColor = deathTexture.color;
+		deathColor.a = 0;
+		deathTexture.color = deathColor;
 		instance = this;
 		arrowsText.color = Color.red;
 	
 	}
 
 	void OnGUI() {
-		if (isPause) {
-			GUI.Box(new Rect(100,100,500,500), "Shop");
+		if (isPause && !dead) {
+			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "Shop");
 			if (GUI.Button(new Rect(250,120,200,50), "Buy Arrow: 500 Points") && Score >= 500){
 				arrows++;
 				Score = Score - 500;
@@ -47,16 +53,34 @@ public class HUDManager : MonoBehaviour {
 			dead = true;
 			isPause = true;
 			// make everything stop, trigger death
-			if(GUI.Button(new Rect(Screen.width/2-300, Screen.height/2-150,600,300), " You Died \n Game Over! \n Restart from the beginning?")){
+			deathFade(0,1,10);
+			if(GUI.Button(new Rect(0, 0, Screen.width, Screen.height), " You Died \n Game Over! \n Restart from the beginning?")){
 				restart = true;
-				isPause = false;
 			}
+
 		}
 		
 	}
-
+		
+	
+	
+	
+	void deathFade ( float startLevel, float endLevel, float duration) {
+		
+		float speed = 1.0f/duration;   
+		
+		for (float t = 0.0f; t < 1.0f; t += Time.deltaTime * speed) {
+			deathTexture.color = deathColor;
+			deathColor.a = Mathf.Lerp(startLevel, endLevel, t);
+			deathTexture.color = deathColor;
+		}
+		
+	}
 	// Update is called once per frame
 	void Update () {
+		if (health <=0 ){
+			health = 0;
+		}
 		if (Input.GetButtonDown ("esc")) {
 			isPause = !isPause;		
 		}
@@ -78,7 +102,7 @@ public class HUDManager : MonoBehaviour {
 			health = maxHealth; // prevents having health higher than 100 (%).
 		}
 		else {
-			instance.healthText.color = Color.white;
+			healthText.color = Color.white;
 		}
 
 
