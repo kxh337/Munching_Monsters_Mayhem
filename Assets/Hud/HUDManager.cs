@@ -71,7 +71,7 @@ public class HUDManager : MonoBehaviour {
 		fuelText.text = Mathf.Floor(fuel).ToString ();
 		// low fuel warning
 		if (fuel < 20) {
-						instance.healthText.color = Color.red;
+						instance.fuelText.color = Color.red;
 				} else if (fuel > 100) {
 						fuel = 100;
 				} else {

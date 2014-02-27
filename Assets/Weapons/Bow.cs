@@ -7,6 +7,8 @@ public class Bow : MonoBehaviour {
 	public float defaultArrowSpeed;
 	public float pulltime;
 	public float maxStrengthPullTime;
+	public AudioClip charge;
+	public AudioClip shootAudio;
 
 	public static bool bowReady;
 
@@ -20,6 +22,8 @@ public class Bow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		charging = false;
+		audio.Stop();
+		audio.clip = charge;
 	}
 	
 	// Update is called once per frame
@@ -40,8 +44,14 @@ public class Bow : MonoBehaviour {
 
 	//loads and charges the arrow
 	void chargingShot(){
+		audio.Stop();
+		audio.clip = charge;
 		if(Time.time > nextFire){
+			if(charging = false){
+
+			}
 		charging = true;
+			audio.Play();
 		pullBackStartTime = Time.time;
 		}
 		else{
@@ -51,6 +61,9 @@ public class Bow : MonoBehaviour {
 
 	//shoots the arrow
 	void shoot(){
+		audio.Stop();
+		audio.clip = shootAudio;
+		audio.Play();
 		float timePulledBack = Time.time - pullBackStartTime; // this is how long the button was held
 		if(timePulledBack > maxStrengthPullTime) // this says max strength is reached 
 			timePulledBack = maxStrengthPullTime; // max strength is ArrowSpeed * maxStrengthPullTime

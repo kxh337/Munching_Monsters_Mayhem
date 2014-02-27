@@ -31,6 +31,8 @@ public class Arrow : MonoBehaviour {
 	//
 	void OnCollisionEnter(Collision collision){
 		print(hitground);
+		Debug.Log(collision.gameObject.tag);
+
 		if(collision.gameObject.tag == "Ground" ){
 			gameObject.tag = "ArrowGround";
 
@@ -40,7 +42,7 @@ public class Arrow : MonoBehaviour {
 			HUDManager.arrows++;
 			Destroy(gameObject);
 		}
-		Debug.Log(collision.gameObject.tag);
+
 		//check if collided with enemy and stay stuck with enemy
 		if((collision.gameObject.tag == "Enemy" && !hitground)){
 			Destroy(gameObject);
