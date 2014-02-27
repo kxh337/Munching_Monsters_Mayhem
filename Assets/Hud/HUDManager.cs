@@ -32,6 +32,10 @@ public class HUDManager : MonoBehaviour {
 	
 	}
 
+	/*
+	 * When isPause is true, creates a shop menu where the player can trade points for ammo, health, and faster bow fire rate.
+	 * If the palyer dies, then it alerts the player and allows him to restart the game.
+	 */
 	void OnGUI() {
 		if (isPause && !dead) {
 			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "Shop");
@@ -76,7 +80,15 @@ public class HUDManager : MonoBehaviour {
 		}
 		
 	}
+<<<<<<< HEAD
 	// Update is called once per frame
+=======
+
+	/* 
+	 * Update is called once per frame
+	 * Manages health/fuel/score/ammo levels as dispalyed by the HUD
+	 */
+>>>>>>> FETCH_HEAD
 	void Update () {
 		if (health <=0 ){
 			health = 0;
@@ -84,12 +96,6 @@ public class HUDManager : MonoBehaviour {
 		if (Input.GetButtonDown ("esc")) {
 			isPause = !isPause;		
 		}
-		if (lanternOn == true && fuel > 0) {
-						// useFuel ();
-				} else {
-						// turn off the directional light
-				}
-		// hit monster, decrease health
 
 		// HEALTH
 		healthText.text = Mathf.Floor(health).ToString();
@@ -135,28 +141,9 @@ public class HUDManager : MonoBehaviour {
 
 	}
 
-
-
-	public void SetHealth(int health) {
-		instance.healthText.text = health.ToString ();
-	}
-
-	public void SetFuel (int fuel) {
-				instance.fuelText.text = fuel.ToString ();
-		}
-
-	public void SetArrows (int arrows) {
-		instance.arrowsText.text = arrows.ToString ();
-	}
-
-	public void onHit() {
-		health -= (10 + Random.Range(-5, 5));
-	}
-
-	private void useFuel () {
-		fuel -= Time.timeSinceLevelLoad;
-	}
-	
+	/*
+	 * Used on collision with a torch object to increase fuel and give the character points
+	 */
 	public static void pickupFuel () {
 		// onCollision
 		// make that item disappear
@@ -164,12 +151,19 @@ public class HUDManager : MonoBehaviour {
 		fuel += 10;
 		addPoints (50);
 	}
-	
+
+	/*
+	 * Used on collision with an ammo object to increase arrows and give the character points
+	 */
 	public static void pickupArrow() {
 		arrows += 1;
 		addPoints (50);
 	}
 
+	/*
+	 * Used by all point increasing actions to add points
+	 * @param points the amount of points to be added
+	 */
 	public static void addPoints(float points) {
 		//used by events to increase score
 		Score += points;
