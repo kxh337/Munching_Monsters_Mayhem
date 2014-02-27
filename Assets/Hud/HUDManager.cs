@@ -45,6 +45,7 @@ public class HUDManager : MonoBehaviour {
 		}
 		if (health <= 0) {
 			dead = true;
+			isPause = true;
 			// make everything stop, trigger death
 			if(GUI.Button(new Rect(Screen.width/2-300, Screen.height/2-150,600,300), " You Died \n Game Over! \n Restart from the beginning?")){
 				restart = true;
