@@ -45,6 +45,7 @@ public class MonsterAI : MonoBehaviour {
 			else {}
 			if (health <= 0) {
 				HUDManager.addPoints (Mathf.Pow (10, GridCreator.Level));
+
 				Destroy (gameObject);
 			}
 		}

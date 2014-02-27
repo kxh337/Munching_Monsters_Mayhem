@@ -56,7 +56,7 @@ public class Bow : MonoBehaviour {
 			timePulledBack = maxStrengthPullTime; // max strength is ArrowSpeed * maxStrengthPullTime
 		clone = (GameObject)Instantiate(arrow, transform.position, transform.rotation);
 		Rigidbody cloneRigid = clone.rigidbody;
-		cloneRigid.AddForce(Camera.main.transform.forward  * defaultArrowSpeed * timePulledBack);
+		cloneRigid.AddForce(Camera.main.transform.forward  * defaultArrowSpeed * (timePulledBack+1));
 		charging = false;
 		nextFire = Time.time + pulltime;
 		HUDManager.arrows--;

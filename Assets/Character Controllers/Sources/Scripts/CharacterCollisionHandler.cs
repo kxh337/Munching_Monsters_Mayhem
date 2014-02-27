@@ -26,8 +26,9 @@ public class CharacterCollisionHandler : MonoBehaviour {
 			Destroy(hit.gameObject);
 		}
 		//Torch
-		if(hit.gameObject.tag == "TorchItem"){
-			print("Hit the torch");
+		if(hit.gameObject.tag == "ArrowGround"){
+			print("Hit the Arrow");
+			HUDManager.arrows++;
 			Destroy(hit.gameObject);
 		}
 	}
