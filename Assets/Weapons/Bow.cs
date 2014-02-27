@@ -5,8 +5,8 @@ using System.Collections;
 public class Bow : MonoBehaviour {
 	public GameObject  arrow;
 	public float defaultArrowSpeed;
-	public float pulltime;
-	public float maxStrengthPullTime;
+	public static float pulltime = .5f;
+	public static float maxStrengthPullTime = 20f;
 	public AudioClip charge;
 	public AudioClip shootAudio;
 
