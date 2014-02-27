@@ -26,10 +26,14 @@ public class HUDManager : MonoBehaviour {
 	void OnGUI() {
 		if (isPause) {
 			GUI.Box(new Rect(0,0,1000,1000), "Shop");
-			if (GUI.Button(new Rect(20,20,200,50), "Buy Arrow: 500 Points") && Score >= 500)
+			if (GUI.Button(new Rect(20,20,200,50), "Buy Arrow: 500 Points") && Score >= 500){
 				arrows++;
-			if (GUI.Button(new Rect(20,70,200,50), "Buy Health: 100 Points") && Score >= 100)
+				Score = Score - 500;
+			}
+			if (GUI.Button(new Rect(20,70,200,50), "Buy Health: 100 Points") && Score >= 100){
 				health = health + 5;
+				Score = Score - 100;
+			}
 		}
 		
 	}

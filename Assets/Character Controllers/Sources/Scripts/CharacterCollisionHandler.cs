@@ -11,6 +11,9 @@ public class CharacterCollisionHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (HUDManager.isPause) {
+
+		}
 	
 	}
 	//Use this for when the Player runs into anything
