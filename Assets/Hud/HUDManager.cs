@@ -14,6 +14,8 @@ public class HUDManager : MonoBehaviour {
 	public static float maxFuel = 100;
 	public static float arrows = 1;
 	public static bool isPause = false;
+	public static bool restart = false;
+	public static bool dead = false;
 
 	public bool lanternOn = true;
 
@@ -33,6 +35,13 @@ public class HUDManager : MonoBehaviour {
 			if (GUI.Button(new Rect(20,70,200,50), "Buy Health: 100 Points") && Score >= 100){
 				health = health + 5;
 				Score = Score - 100;
+			}
+		}
+		if (health <= 0) {
+			dead = true;
+			// make everything stop, trigger death
+			if(GUI.Button(new Rect(Screen.width/2-300, Screen.height/2-150,600,300), " You Died \n Game Over! \n Restart from the beginning?")){
+				restart = true;
 			}
 		}
 		
@@ -56,9 +65,7 @@ public class HUDManager : MonoBehaviour {
 		if (health < 30) {
 			instance.healthText.color = Color.red;
 		}
-		else if (health <= 0) {
-			// make everything stop, trigger death
-			}
+
 		else if ( health > maxHealth ) {
 			health = maxHealth; // prevents having health higher than 100 (%).
 		}

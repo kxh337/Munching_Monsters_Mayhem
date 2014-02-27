@@ -55,6 +55,7 @@ public class MonsterAI : MonoBehaviour {
 		if ((collision.gameObject.tag == "Arrow")) {
 			health -= 100;
 		}
+	
 		if ((collision.gameObject.tag == "Player")) {
 			HUDManager.health -= 1;;
 		}
