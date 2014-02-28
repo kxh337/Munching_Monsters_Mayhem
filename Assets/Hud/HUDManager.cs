@@ -80,15 +80,15 @@ public class HUDManager : MonoBehaviour {
 		}
 		
 	}
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	// Update is called once per frame
-=======
+//=======
 
 	/* 
 	 * Update is called once per frame
 	 * Manages health/fuel/score/ammo levels as dispalyed by the HUD
 	 */
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 	void Update () {
 		if (health <=0 ){
 			health = 0;
