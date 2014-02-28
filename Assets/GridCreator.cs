@@ -17,15 +17,15 @@ public class GridCreator : MonoBehaviour {
 	public Transform CellPrefab;
 	public Vector3 Size;
 	public Transform[,] Grid;
-	public Object[] Doodads;
-	public int torchspawnrate = 35;
+	public Object[] Doodads; // prefab stuff to go in the maze
+	public int torchspawnrate = 35; // spawn rate per cell
 	public int monsterspawnrate = 5;
 	public int weaponspawnrate = 10;
-	public float GridHeight;
-	public GameObject player; 
-	public GameObject beam;
-	public GameObject EndZone;
-	public static int Level = 1;
+	public float GridHeight; // hight of walls
+	public GameObject player; // the player
+	public GameObject beam; // the beam of light
+	public GameObject EndZone; // the end zone
+	public static int Level = 1; // level player has reached
 	public static bool levelstart;
 
 
@@ -192,9 +192,13 @@ public class GridCreator : MonoBehaviour {
 				Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
 				CancelInvoke("FindNext");
 				PathCells[PathCells.Count - 1].renderer.material.color = Color.yellow;
+				// place the beam above the end cell
 				beam.transform.position = new Vector3 (PathCells[PathCells.Count - 1].transform.position.x, 7, PathCells[PathCells.Count -1].transform.position.z); 
+				// place the trigger at the end cell
 				EndZone.transform.position = (PathCells[PathCells.Count - 1].position);
-				//creates a wall along the souther side of the maze
+				/*
+				 * creates a wall along the souther side of the maze
+				 */
 				for (int x = 0; x < (int)Size.x+1; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3(x,0,-1), Quaternion.identity);
@@ -204,7 +208,9 @@ public class GridCreator : MonoBehaviour {
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
 					cell.GetComponentInChildren<TextMesh>().active = false;
 				}
-				//creates a wall  along the northern side of the maze
+				/*
+				 * creates a wall  along the northern side of the maze
+				 */
 				for (int x = 0; x < (int)Size.x+1; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3(x,0,(int)Size.z), Quaternion.identity);
@@ -214,7 +220,9 @@ public class GridCreator : MonoBehaviour {
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
 					cell.GetComponentInChildren<TextMesh>().active = false;
 				}
-				//creates a wall along the western side of the maze
+				/*
+				 * creates a wall along the western side of the maze
+				 */
 				for (int x = 0; x < (int)Size.z; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3(-1,0,x), Quaternion.identity);
@@ -224,7 +232,9 @@ public class GridCreator : MonoBehaviour {
 						new Vector3(cell.transform.localPosition.x, GridHeight/2, cell.transform.localPosition.z);
 					cell.GetComponentInChildren<TextMesh>().active = false;
 				}
-				//creates a wall along the eastern side of the maze
+				/*
+				 * creates a wall along the eastern side of the maze
+				 */
 				for (int x = 0; x < (int)Size.z; x++){
 					Transform cell;
 					cell = (Transform)Instantiate(CellPrefab, new Vector3((int)Size.x,0,x), Quaternion.identity);
@@ -261,13 +271,13 @@ public class GridCreator : MonoBehaviour {
 
 		// The 'next' transform's material color becomes yellow.
 		next.renderer.material.color = Color.yellow;
-		if (Random.Range (0, 100) < torchspawnrate) {
+		if (Random.Range (0, 100) < torchspawnrate) { //  spawn torch in cell
 			Instantiate(Doodads[0], new Vector3(next.position.x - .5f, next.position.y + .75f, next.position.z - .5f), Quaternion.Euler (25f, 0f ,-25f));		
 		}
-		if (Random.Range (0, 100) < monsterspawnrate) {
+		if (Random.Range (0, 100) < monsterspawnrate) { //  spawns a monster in the cell
 			Instantiate(Doodads[1], new Vector3(next.position.x, next.position.y + .5f, next.position.z + 0.25f), transform.rotation);		
 		}
-		if (Random.Range (0, 100) < weaponspawnrate) {
+		if (Random.Range (0, 100) < weaponspawnrate) { // spawns ammo in the cell
 			Instantiate(Doodads[2], new Vector3(next.position.x, next.position.y + .75f, next.position.z - 0.25f), transform.rotation);		
 		}
 		// We add this 'next' transform to the Set our function.
@@ -276,10 +286,12 @@ public class GridCreator : MonoBehaviour {
 		Invoke("FindNext", 0);
 	}
 
-	// Called once per frame.
+	/*
+	 * handles level restart events
+	 */
 	void Update() {
 
-		// Pressing 'F1' will generate a new maze.
+		// reloads a new level one level higher
 		if (levelstart == true) {
 			Level++;
 			Application.LoadLevel(0);	
@@ -291,6 +303,7 @@ public class GridCreator : MonoBehaviour {
 			HUDManager.health = 100;
 			HUDManager.arrows = 1;
 			HUDManager.fuel = 30;
+			HUDManager.Score = 0;
 			Application.LoadLevel(0);
 			HUDManager.restart = false;
 			HUDManager.isPause = false;
